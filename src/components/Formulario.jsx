@@ -2,7 +2,7 @@ import Alerta from "./Alerta";
 import { useState } from "react"
 
 
-const Formulario = () => {
+const Formulario = ({pacientes, setpacientes}) => {
 
     const [nombre, setNombre] = useState("");
     const [propietario, setPropietario] = useState("");
@@ -27,9 +27,30 @@ const Formulario = () => {
             error: false,
             mensaje: "Paciente Registrado"
         })
+        
+        setpacientes([
+            ...pacientes,
+             {
+              nombre,
+              propietario,
+              email, 
+              fecha, 
+              sintomas
+        }
+    ]
+    )
+
+    setNombre("")
+    setPropietario("")
+    setEmail("")
+    setFecha("")
+    setSintomas("")
+
+
     }
 
     const { mensaje } = alerta;
+    
 
     return (
 
@@ -67,7 +88,8 @@ const Formulario = () => {
                 </div>
 
                 <input type="submit" className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 hover:cursor-pointer transition-all" value="Agregar Paciente" />
-
+                
+                
             </form>
 
         </div>
